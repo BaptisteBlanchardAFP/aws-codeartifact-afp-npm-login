@@ -1,0 +1,23 @@
+{
+  "name": "aws-codeartifact-afp-npm-login",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "package": "ncc build index.js -o dist/action && ncc build cleanup.js -o dist/cleanup"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/exec": "^1.1.1",
+    "@actions/io": "^1.1.2",
+    "@aws-sdk/client-codeartifact": "^3.14.0",
+    "aws-sdk": "^2.902.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3"
+  },
+  "description": "",
+  "keywords": [],
+  "author": ""
+}
