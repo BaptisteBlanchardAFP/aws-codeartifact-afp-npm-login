@@ -40,22 +40,12 @@ async function run() {
 async function generateNPMRCFile(domain, account, region, repo, authToken, path, mirror) {
 
    await io.rmRF(path);
-   fs.exists(path, function (exists) {
-
-      if (exists) {
-         console.log('File exists. Deleting now ...');
-         fs.unlinkSync(path);
-      } else {
-         console.log('File not found, so not deleting.');
-      }
-
-   });
 
    const file = `@afp:registry=https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com/npm/${repo}
 //https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com/npm/${repo}/:_authToken=${authToken}
 registry=https://registry.npmjs.com`;
 
-   console.log(".NPMRC:");
+   console.log(".NPMRC, located at:", path);
    console.log(file);
 
    fs.writeFile(path, file, { flag: 'wx' }, (callback) => {
