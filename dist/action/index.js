@@ -45,6 +45,8 @@ async function generateNPMRCFile(domain, account, region, repo, authToken, path,
 //https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com/npm/${repo}/:_authToken=${authToken}
 registry=https://registry.npmjs.com`;
 
+   process.env["CODEARTIFACT_AUTH_TOKEN"] = authToken;
+
    console.log(".NPMRC, located at:", path);
    console.log(file);
 
