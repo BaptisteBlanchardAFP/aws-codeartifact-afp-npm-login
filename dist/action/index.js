@@ -30,6 +30,7 @@ async function run() {
       throw Error(`Auth Failed: ${response.$metadata.httpStatusCode} (${response.$metadata.requestId})`);
    }
 
+   console.log("Auth token:", authToken);
    generateNPMRCFile(domain, account, region, repo, authToken, path);
 
    core.setOutput('registry', `https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com`);
@@ -53,6 +54,9 @@ async function generateNPMRCFile(domain, account, region, repo, authToken, path,
    const file = `@afp:registry=https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com/npm/${repo}
 //https://${domain}-${account}.d.codeartifact.${region}.amazonaws.com/npm/${repo}/:_authToken=${authToken}
 registry=https://registry.npmjs.com`;
+
+   console.log(".NPMRC:");
+   console.log(file);
 
    fs.writeFile(path, file, { flag: 'wx' }, (callback) => {
       if (callback) core.setFailed(callback);
